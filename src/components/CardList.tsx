@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch, UseDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCards, setCards } from "../slice/cardSlice";
 import data from "../data/data.json";
 import Card from "./Card";
-import { IoIosHeartEmpty } from "react-icons/io";
 
 const CardList: React.FC = () => {
   const dispatch = useDispatch();

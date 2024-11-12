@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import Search from "../components/Search";
 import CardList from "../components/CardList";
 import LinksHome from "../components/LinksHome";
+import Footer from "../components/Footer";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
       <Categories />
       <CardList />
       <LinksHome />
+      <Footer />
     </>
   );
 }

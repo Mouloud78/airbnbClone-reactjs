@@ -3,8 +3,30 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between items-center border-t-2 m-auto max-w-[1200px]">
-      <ul className="flex justify-between items-center gap-1 p-3">
+    <footer
+      className=" border-t
+        max-w-[1200px]
+        mx-auto
+        px-4
+        md:px-8
+        py-6
+        flex
+        flex-col
+        lg:flex-row
+        justify-between
+        items-center
+        gap-6"
+    >
+      <ul
+        className="flex
+          flex-wrap
+          justify-center
+          lg:justify-start
+          items-center
+          gap-2
+          text-sm
+          text-gray-600"
+      >
         <li>&copy; Airbnb, inc,</li>
         <li>&#183;</li>
         <li>

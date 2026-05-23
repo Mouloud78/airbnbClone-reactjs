@@ -1,29 +1,48 @@
 export default function LinksHome() {
   return (
-    <div className="grid grid-cols-3 gap-4 max-w-[1200px] m-auto py-8">
-      <div className="p-4">
+    <div
+      className="
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-3
+        gap-6
+        max-w-[1200px]
+        mx-auto
+        py-8
+        px-4
+        md:px-8
+      "
+    >
+      {/* Assistance */}
+      <div className="p-2 md:p-4">
         <h4 className="text-lg font-semibold mb-3">Assistance</h4>
-        <ul className="flex flex-col gap-3">
+
+        <ul className="flex flex-col gap-3 text-sm md:text-base">
           <li>
             <a href="#" className="hover:underline">
               Centre d'aide
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               AirCover
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
-              Lutte contre la descrimination
+              Lutte contre la discrimination
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
-              Assistance handicape
+              Assistance handicap
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               Options d'annulation
@@ -32,29 +51,35 @@ export default function LinksHome() {
         </ul>
       </div>
 
-      <div className="p-4">
+      {/* Voyage */}
+      <div className="p-2 md:p-4">
         <h4 className="text-lg font-semibold mb-3">Accueil de voyage</h4>
-        <ul className="flex flex-col gap-3">
+
+        <ul className="flex flex-col gap-3 text-sm md:text-base">
           <li>
             <a href="#" className="hover:underline">
               J'ai un problème de voisinage
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
-              Mettrez votre logement sur Airbnb
+              Mettre votre logement sur Airbnb
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               AirCover pour les hôtes
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
-              Ressources pour les autres
+              Ressources pour les hôtes
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               Forum de la communauté
@@ -63,29 +88,35 @@ export default function LinksHome() {
         </ul>
       </div>
 
-      <div className="p-4">
+      {/* Airbnb */}
+      <div className="p-2 md:p-4">
         <h4 className="text-lg font-semibold mb-3">Airbnb</h4>
-        <ul className="flex flex-col gap-3">
+
+        <ul className="flex flex-col gap-3 text-sm md:text-base">
           <li>
             <a href="#" className="hover:underline">
               Newsroom
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               AirCover
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
-              Nouvelle fonctionnalités
+              Nouvelles fonctionnalités
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               Carrières
             </a>
           </li>
+
           <li>
             <a href="#" className="hover:underline">
               Investisseurs

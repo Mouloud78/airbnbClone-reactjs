@@ -1,11 +1,15 @@
+import { useRef } from "react";
+
 import { SiOpensea, SiCampaignmonitor } from "react-icons/si";
 import { GrOverview } from "react-icons/gr";
+
 import {
   MdOutlinePool,
   MdCabin,
   MdOutlineSurfing,
   MdOutlineTwoWheeler,
 } from "react-icons/md";
+
 import {
   GiBigDiamondRing,
   GiFarmTractor,
@@ -21,10 +25,12 @@ import {
   GiWheat,
   GiYinYang,
 } from "react-icons/gi";
+
 import { FaSkiing } from "react-icons/fa";
+
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+
 import { IoFilterSharp } from "react-icons/io5";
-import { useState } from "react";
 
 enum ScrollDirection {
   LEFT = "left",
@@ -32,7 +38,7 @@ enum ScrollDirection {
 }
 
 export default function Categories() {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const categoriesList = [
     { name: "Bord de mer", icon: <SiOpensea /> },
@@ -48,7 +54,7 @@ export default function Categories() {
     { name: "Cabanes", icon: <MdCabin /> },
     { name: "Cabanes perchées", icon: <GiLuckyFisherman /> },
     { name: "Camping", icon: <GiCampingTent /> },
-    { name: "Ile", icon: <GiIsland /> },
+    { name: "Îles", icon: <GiIsland /> },
     { name: "Montagnes", icon: <GiMountainCave /> },
     { name: "Vignobles", icon: <GiGrapes /> },
     { name: "Forêts", icon: <GiTreeBranch /> },
@@ -59,61 +65,139 @@ export default function Categories() {
   ];
 
   const handleScroll = (direction: ScrollDirection) => {
-    const scrollWidth = 250;
-    const containerWidth = 400;
+    if (!scrollRef.current) return;
+
+    const scrollAmount = 300;
 
     if (direction === ScrollDirection.LEFT) {
-      setScrollPosition(Math.max(scrollPosition - scrollWidth, 0));
-    } else if (direction === ScrollDirection.RIGHT) {
-      setScrollPosition(
-        Math.min(
-          scrollPosition + scrollWidth,
-          categoriesList.length * scrollWidth - containerWidth
-        )
-      );
+      scrollRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    } else {
+      scrollRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
   return (
-    <div className="relative pt-6 px-10 flex items-center gap-3">
-      {scrollPosition > 0 && (
-        <button
-          onClick={() => handleScroll(ScrollDirection.LEFT)}
-          className="p-1 bg-white rounded-full border border-black z-10 font-bold flex items-center justify-center text-sm"
-        >
-          <RiArrowLeftSLine />
-        </button>
-      )}
-      <div className="flex items-center overflow-hidden">
-        <div
-          className="flex transition-all"
-          style={{ transform: `translateX(-${scrollPosition}px)` }}
-        >
-          <div className="flex items-center">
-            {categoriesList.map((category, index) => (
-              <div key={index} className="w-32 flex-shrink-0">
-                <div className="flex flex-col items-center cursor-pointer border-b-2 border-[#fff] hover:border-b-2 hover:border-[#484848] pb-2">
-                  <span className="text-xl">{category.icon}</span>
-                  <span className="text-sm mt-1">{category.name}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="relative pt-6 px-4 md:px-10 flex items-center gap-3">
+      {/* LEFT BUTTON - DESKTOP ONLY */}
+      <button
+        onClick={() => handleScroll(ScrollDirection.LEFT)}
+        className="
+          hidden
+          md:flex
+          items-center
+          justify-center
+          p-2
+          rounded-full
+          border
+          bg-white
+          shadow-sm
+          hover:shadow-md
+          transition
+          z-10
+        "
+      >
+        <RiArrowLeftSLine className="text-xl" />
+      </button>
+
+      {/* SCROLL CONTAINER */}
+      <div
+        ref={scrollRef}
+        className="
+          flex-1
+          overflow-x-auto
+          scrollbar-hide
+          scroll-smooth
+        "
+      >
+        <div className="flex gap-6 min-w-max">
+          {categoriesList.map((category, index) => (
+            <div
+              key={index}
+              className="
+                flex
+                flex-col
+                items-center
+                justify-center
+                cursor-pointer
+                border-b-2
+                border-transparent
+                hover:border-[#484848]
+                pb-2
+                transition
+                min-w-[90px]
+                md:min-w-[120px]
+                flex-shrink-0
+              "
+            >
+              <span className="text-xl md:text-2xl text-[#484848]">
+                {category.icon}
+              </span>
+
+              <span
+                className="
+                  text-xs
+                  md:text-sm
+                  mt-1
+                  text-center
+                  text-[#484848]
+                  whitespace-nowrap
+                "
+              >
+                {category.name}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
-      {scrollPosition < categoriesList.length * 200 - 400 && (
-        <button
-          onClick={() => handleScroll(ScrollDirection.RIGHT)}
-          className="p-1 bg-white rounded-full border border-black z-10 font-bold flex items-center justify-center text-sm"
-        >
-          <RiArrowRightSLine />
-        </button>
-      )}
-      <button className="border border-[#000] flex items-center gap-1 p-2 rounded-md cursor-pointer">
-        <span>
-          <IoFilterSharp />
-        </span>
-        <span>Filtres</span>
+
+      {/* RIGHT BUTTON - DESKTOP ONLY */}
+      <button
+        onClick={() => handleScroll(ScrollDirection.RIGHT)}
+        className="
+          hidden
+          md:flex
+          items-center
+          justify-center
+          p-2
+          rounded-full
+          border
+          bg-white
+          shadow-sm
+          hover:shadow-md
+          transition
+          z-10
+        "
+      >
+        <RiArrowRightSLine className="text-xl" />
+      </button>
+
+      {/* FILTER BUTTON */}
+      <button
+        className="
+          flex
+          items-center
+          gap-2
+          border
+          border-gray-300
+          px-3
+          py-2
+          rounded-xl
+          cursor-pointer
+          hover:shadow-sm
+          transition
+          whitespace-nowrap
+          bg-white
+        "
+      >
+        <IoFilterSharp />
+
+        <span className="hidden sm:block">Filtres</span>
       </button>
     </div>
   );

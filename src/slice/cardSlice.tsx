@@ -30,6 +30,7 @@ export const cardListSlice = createSlice({
 });
 
 export const { setCards } = cardListSlice.actions;
-export const selectCards = (state, RootState) => state.cardList.cards;
+export const selectCards = (state: { cardList: cardListState }) =>
+  state.cardList.cards;
 
 export default cardListSlice.reducer;

@@ -10,7 +10,7 @@ import Card from "./Card";
 const CardList: React.FC = () => {
   const dispatch = useDispatch();
 
-  const cards = useSelector((state) => selectCards(state));
+  const cards = useSelector((state: any) => selectCards(state));
 
   useEffect(() => {
     dispatch(setCards(data));
